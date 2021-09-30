@@ -1,0 +1,42 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModal()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>
+      Edit Notes
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveModal()">Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-item *ngFor="let message of Notes; let i = index; trackBy: trackByFn;">
+      <ion-label color="medium">{{i + 1}}.</ion-label>
+      <ion-textarea [(ngModel)]="Notes[i]"
+                    inputmode="text" required autoGrow rows="3"
+                    [maxlength]="NoteMaxLen"></ion-textarea>
+      <ion-icon name="trash-outline" slot="end" (click)="delete(i)" color="danger"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-label color="medium">New note</ion-label>
+      <ion-textarea [(ngModel)]="newNote"
+                    inputmode="text" autoGrow="false" rows="3"
+                    [maxlength]="NoteMaxLen"></ion-textarea>
+      <ion-button color="success" (click)="addNewNote()">
+        <ion-icon name="add-outline"></ion-icon>
+        Add
+      </ion-button>
+    </ion-item>
+
+  </ion-toolbar>
+</ion-footer>
